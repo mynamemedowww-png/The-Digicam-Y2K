@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NS Camera - Thế giới máy ảnh chính hãng</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+    <!-- Header / Navbar -->
+    <header class="bg-slate-900 text-white sticky top-0 z-50 shadow-md">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold tracking-wider flex items-center gap-2">
+                <i class="fa-solid fa-camera-retro text-amber-400"></i> NS CAMERA
+            </a>
+            <div class="flex items-center gap-6">
+                <nav class="hidden md:flex gap-6 text-sm font-medium">
+                    <a href="#products" class="hover:text-amber-400 transition">Sản phẩm</a>
+                    <a href="#about" class="hover:text-amber-400 transition">Giới thiệu</a>
+                    <a href="#contact" class="hover:text-amber-400 transition">Liên hệ</a>
+                </nav>
+                <!-- Nút mở giỏ hàng -->
+                <button onclick="toggleCart()" class="relative bg-amber-500 hover:bg-amber-600 text-slate-900 font-semibold px-4 py-2 rounded-lg flex items-center gap-2 transition shadow">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span>Giỏ hàng</span>
+                    <span id="cart-count" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center font-bold shadow">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white py-16 text-center px-4">
+        <div class="container mx-auto max-w-3xl">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">Bắt trọn khoảnh khắc, <span class="text-amber-400">Tôn vinh đam mê</span></h1>
+            <p class="text-gray-300 mb-8 text-base md:text-lg">Cung cấp các dòng máy ảnh Mirrorless, DSLR và ống kính chính hãng giá tốt nhất thị trường.</p>
+            <a href="#products" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-8 py-3 rounded-full shadow-lg transition transform hover:-translate-y-0.5 inline-block">Khám phá ngay</a>
+        </div>
+    </section>
+
+    <!-- Danh sách sản phẩm -->
+    <main id="products" class="container mx-auto px-4 py-12">
+        <h2 class="text-3xl font-bold text-center mb-2">Sản phẩm nổi bật</h2>
+        <p class="text-gray-500 text-center mb-10">Lựa chọn những thiết bị nhiếp ảnh đỉnh cao cho riêng bạn</p>
+        
+        <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Sản phẩm sẽ được load tự động bằng JavaScript -->
+        </div>
+    </main>
+
+    <!-- Giỏ hàng Sidebar / Modal -->
+    <div id="cart-modal" class="fixed inset-0 bg-black/50 z-50 hidden flex justify-end transition-opacity">
+        <div class="bg-white w-full max-w-md h-full shadow-2xl flex flex-col p-6 overflow-y-auto">
+            <div class="flex justify-between items-center border-b pb-4 mb-4">
+                <h3 class="text-xl font-bold flex items-center gap-2">
+                    <i class="fa-solid fa-bag-shopping text-amber-500"></i> Giỏ hàng của bạn
+                </h3>
+                <button onclick="toggleCart()" class="text-gray-400 hover:text-gray-600 text-xl font-bold">&times;</button>
+            </div>
+
+            <!-- Danh sách hàng trong giỏ -->
+            <div id="cart-items" class="flex-grow space-y-4 overflow-y-auto pr-1">
+                <p class="text-gray-500 text-center py-8">Giỏ hàng đang trống trơn!</p>
+            </div>
+
+            <!-- Tổng tiền & Thanh toán -->
+            <div class="border-t pt-4 mt-4">
+                <div class="flex justify-between items-center mb-4 text-lg font-bold">
+                    <span>Tổng cộng:</span>
+                    <span id="cart-total" class="text-amber-600">0đ</span>
+                </div>
+                <button onclick="checkout()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-xl transition shadow">
+                    Tiến hành đặt hàng
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-slate-900 text-gray-400 py-10 text-center mt-16">
+        <div class="container mx-auto px-4">
+            <p class="text-white font-bold text-lg mb-2">NS CAMERA STORE</p>
+            <p class="text-sm mb-4">Uy tín tạo nên thương hiệu • Hỗ trợ trả góp 0%</p>
+            <p class="text-xs text-gray-500">&copy; 2026 NS Camera. Designed with love by Thảo Nguyên.</p>
+        </div>
+    </footer>
+
+    <!-- Script xử lý giỏ hàng & sản phẩm động -->
+    <script src="app.js"></script>
+</body>
+</html>
