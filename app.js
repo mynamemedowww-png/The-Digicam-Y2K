@@ -1,58 +1,55 @@
-// Dữ liệu mẫu các máy ảnh
+// Dữ liệu máy ảnh đậm chất Y2K & Retro
 const products = [
     {
         id: 1,
-        name: "Sony Alpha A7 IV",
-        price: 48500000,
+        name: "Sony Cyber-shot DSC-W350",
+        price: 3200000,
         image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=600&q=80",
-        desc: "Cảm biến Full-frame 33MP, quay phim 4K 60p, lấy nét tự động thời gian thực siêu đỉnh."
+        desc: "Huyền thoại compact CCD mang lại màu ảnh vintage cực chất, nhỏ gọn đút túi quần."
     },
     {
         id: 2,
-        name: "Fujifilm X-T5",
-        price: 39900000,
+        name: "Fujifilm FinePix F40fd",
+        price: 3800000,
         image: "https://images.unsplash.com/photo-1502982720700-bfff97f2ecac?auto=format&fit=crop&w=600&q=80",
-        desc: "Thiết kế hoài cổ cá tính, cảm biến X-Trans 5 HR 40MP, chống rung IBIS cực mạnh."
+        desc: "Cảm biến Super CCD cho khả năng tái tạo màu sắc ấm áp, đặc trưng phong cách hoài cổ."
     },
     {
         id: 3,
-        name: "Canon EOS R6 Mark II",
-        price: 52000000,
+        name: "Canon PowerShot S95",
+        price: 4500000,
         image: "https://images.unsplash.com/photo-1519638399535-1b036603ac77?auto=format&fit=crop&w=600&q=80",
-        desc: "Chụp liên tục 40fps, tối ưu hóa tuyệt vời cho cả nhiếp ảnh gia chân dung và nhà làm phim."
+        desc: "Dòng máy ảnh cao cấp bỏ túi, khẩu độ lớn mở rộng khả năng chụp thiếu sáng."
     },
     {
         id: 4,
-        name: "Nikon Zf",
-        price: 45000000,
+        name: "Nikon Coolpix L22",
+        price: 2500000,
         image: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=600&q=80",
-        desc: "Ngoại hình cổ điển đậm chất máy film lịch sử kết hợp công nghệ xử lý ảnh Expeed 7 hiện đại."
+        desc: "Dễ sử dụng, dùng pin tiểu AA tiện lợi, hạt ảnh thô mịn đậm chất thập niên 2000s."
     },
     {
         id: 5,
-        name: "Sony ZV-E10 II",
-        price: 23500000,
+        name: "Olympus FE-340",
+        price: 2900000,
         image: "https://images.unsplash.com/photo-1495714401831-7e81083f3e58?auto=format&fit=crop&w=600&q=80",
-        desc: "Chân ái cho các creator quay vlog, làm TikTok, màn hình xoay lật linh hoạt, lấy nét cực nhạy."
+        desc: "Thiết kế vỏ nhôm sáng bóng sang trọng, dải màu hoài niệm chuẩn aesthetic Y2K."
     },
     {
         id: 6,
-        name: "Fujifilm X100VI",
-        price: 42000000,
+        name: "Panasonic Lumix DMC-FX7",
+        price: 3500000,
         image: "https://images.unsplash.com/photo-1512790182412-b19e6d62bc39?auto=format&fit=crop&w=600&q=80",
-        desc: "Dòng máy ảnh compact ống kính liền cao cấp, luôn trong tình trạng cháy hàng toàn cầu."
+        desc: "Ống kính Leica danh tiếng, chống rung O.I.S ổn định, sắc nét trong từng khung hình."
     }
 ];
 
-// Lấy giỏ hàng từ localStorage (nếu có)
-let cart = JSON.parse(localStorage.getItem('ns_cart')) || [];
+let cart = JSON.parse(localStorage.getItem('digicam_cart')) || [];
 
-// Format tiền tệ VNĐ
 function formatMoney(amount) {
     return amount.toLocaleString('vi-VN') + 'đ';
 }
 
-// Render danh sách sản phẩm ra HTML
 function renderProducts() {
     const grid = document.getElementById('product-grid');
     grid.innerHTML = products.map(product => `
@@ -76,7 +73,6 @@ function renderProducts() {
     `).join('');
 }
 
-// Thêm sản phẩm vào giỏ hàng
 function addToCart(productId) {
     const product = products.find(p => p.id === productId);
     const existingItem = cart.find(item => item.id === productId);
@@ -88,26 +84,20 @@ function addToCart(productId) {
     }
 
     saveAndRenderCart();
-    
-    // Hiệu ứng nhẹ báo đã thêm
     alert(`Đã thêm "${product.name}" vào giỏ hàng!`);
 }
 
-// Lưu giỏ hàng vào trình duyệt và cập nhật giao diện
 function saveAndRenderCart() {
-    localStorage.setItem('ns_cart', JSON.stringify(cart));
+    localStorage.setItem('digicam_cart', JSON.stringify(cart));
     
-    // Cập nhật số lượng trên icon giỏ hàng
     const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
     document.getElementById('cart-count').innerText = totalCount;
 
-    // Render danh sách trong giỏ
     const cartContainer = document.getElementById('cart-items');
     if (cart.length === 0) {
         cartContainer.innerHTML = `<p class="text-gray-500 text-center py-8">Giỏ hàng đang trống trơn!</p>`;
     } else {
         cartContainer.innerHTML = cart.map(item => `
-            flex flex-col gap-2 ...
             <div class="flex items-center justify-between gap-3 border-b pb-3">
                 <img src="${item.image}" class="w-16 h-16 object-cover rounded-lg border">
                 <div class="flex-grow">
@@ -123,12 +113,10 @@ function saveAndRenderCart() {
         `).join('');
     }
 
-    // Tính tổng tiền
     const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
     document.getElementById('cart-total').innerText = formatMoney(totalPrice);
 }
 
-// Tăng giảm số lượng sản phẩm trong giỏ
 function updateQuantity(productId, delta) {
     const item = cart.find(i => i.id === productId);
     if (item) {
@@ -140,24 +128,48 @@ function updateQuantity(productId, delta) {
     saveAndRenderCart();
 }
 
-// Bật/tắt mở modal giỏ hàng
 function toggleCart() {
     const modal = document.getElementById('cart-modal');
     modal.classList.toggle('hidden');
 }
 
-// Xử lý nút thanh toán
-function checkout() {
+// Mở modal quét mã QR thanh toán sử dụng VietQR API tự động
+function openCheckoutModal() {
     if (cart.length === 0) {
         alert("Giỏ hàng của bạn đang trống!");
         return;
     }
-    alert("Cảm ơn bạn đã đặt hàng! (Đây là web demo tĩnh, đơn hàng đã được ghi nhận vào hệ thống giả lập).");
-    cart = [];
-    saveAndRenderCart();
+    
+    const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    document.getElementById('qr-total-amount').innerText = formatMoney(totalPrice);
+
+    // Tạo link VietQR tự động điền số tiền (Dùng tài khoản mẫu VietQR công khai hoặc thay thông tin của ông vào đây)
+    // Cú pháp VietQR chuẩn: https://img.vietqr.io/image/[BANK_ID]-[ACCOUNT_NO]-[TEMPLATE].png?amount=[MONEY]&addInfo=[NOTE]
+    // Ví dụ dùng Vietcombank / MB Bank:
+    const bankId = "MB"; // Mã ngân hàng (ví dụ: MB, VCB, TCB...)
+    const accountNo = "0123456789"; // Số tài khoản nhận tiền của ông
+    const template = "compact";
+    const note = "TheDigicamY2K Thanh Toan";
+    
+    const qrUrl = `https://img.vietqr.io/image/${bankId}-${accountNo}-${template}.png?amount=${totalPrice}&addInfo=${encodeURIComponent(note)}`;
+    
+    document.getElementById('qr-code-img').src = qrUrl;
+
+    // Ẩn giỏ hàng, bật modal QR
     toggleCart();
+    document.getElementById('checkout-modal').classList.remove('hidden');
 }
 
-// Khởi chạy khi load trang
+function closeCheckoutModal() {
+    document.getElementById('checkout-modal').classList.add('hidden');
+}
+
+function confirmOrder() {
+    alert("Cảm ơn bạn! Hệ thống đã ghi nhận đơn hàng và đang chờ xác nhận chuyển khoản từ bạn.");
+    cart = [];
+    saveAndRenderCart();
+    closeCheckoutModal();
+}
+
 renderProducts();
 saveAndRenderCart();
