@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi Tiết Sản Phẩm - The Digicam Y2K</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+    <!-- Header -->
+    <header class="bg-slate-900 text-white sticky top-0 z-50 shadow-md">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold tracking-wider flex items-center gap-2">
+                <i class="fa-solid fa-camera-retro text-amber-400"></i> The Digicam Y2K
+            </a>
+            <button onclick="toggleCart()" class="relative bg-amber-500 hover:bg-amber-600 text-slate-900 font-semibold px-4 py-2 rounded-lg flex items-center gap-2 transition shadow">
+                <i class="fa-solid fa-cart-shopping"></i> Giỏ hàng <span id="cart-count" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center font-bold">0</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Chi tiết sản phẩm -->
+    <main class="container mx-auto px-4 py-12 max-w-5xl">
+        <div class="bg-white rounded-2xl shadow-md p-6 md:p-10 grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div>
+                <img id="detail-img" src="" class="w-full h-96 object-cover rounded-xl border shadow-inner">
+            </div>
+            <div class="flex flex-col justify-between">
+                <div>
+                    <h1 id="detail-name" class="text-2xl md:text-3xl font-bold text-slate-900 mb-3">Tên máy</h1>
+                    <div class="flex items-center gap-4 mb-4">
+                        <span id="detail-price" class="text-2xl font-extrabold text-amber-600">0đ</span>
+                        <span id="detail-old-price" class="text-gray-400 line-through text-sm">0đ</span>
+                        <span class="bg-red-100 text-red-600 text-xs font-bold px-2 py-1 rounded">Giảm giá sốc</span>
+                    </div>
+                    <p id="detail-desc" class="text-gray-600 text-sm leading-relaxed mb-6">Mô tả chi tiết sản phẩm...</p>
+                </div>
+                
+                <div class="space-y-4">
+                    <div class="flex items-center gap-4">
+                        <span class="text-sm font-semibold">Số lượng:</span>
+                        <div class="flex items-center border rounded-lg overflow-hidden">
+                            <button onclick="changeQty(-1)" class="px-3 py-1 bg-gray-100 hover:bg-gray-200">-</button>
+                            <span id="qty-input" class="px-4 py-1 text-sm font-bold">1</span>
+                            <button onclick="changeQty(1)" class="px-3 py-1 bg-gray-100 hover:bg-gray-200">+</button>
+                        </div>
+                    </div>
+                    <button onclick="addCurrentToCart()" class="w-full bg-slate-900 hover:bg-amber-500 hover:text-slate-900 text-white font-bold py-3 rounded-xl transition shadow">
+                        <i class="fa-solid fa-cart-plus mr-2"></i> Thêm vào giỏ hàng
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gợi ý phụ kiện mua kèm -->
+        <div class="mt-16">
+            <h3 class="text-xl font-bold mb-6 text-slate-900">Gợi ý phụ kiện mua kèm</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                <div class="bg-white p-4 rounded-xl shadow-sm text-center border">
+                    <img src="https://images.unsplash.com/photo-1542359649-31e83cd4d909?auto=format&fit=crop&w=400&q=80" class="w-full h-32 object-cover rounded mb-2">
+                    <h4 class="font-bold text-sm">Thẻ nhớ SD vintage 2GB</h4>
+                    <p class="text-amber-600 text-sm font-bold">150.000đ</p>
+                    <button onclick="addAccessory('Thẻ nhớ SD vintage 2GB', 150000)" class="mt-2 bg-slate-900 text-white text-xs px-3 py-1.5 rounded">Thêm</button>
+                </div>
+                <div class="bg-white p-4 rounded-xl shadow-sm text-center border">
+                    <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=400&q=80" class="w-full h-32 object-cover rounded mb-2">
+                    <h4 class="font-bold text-sm">Dây đeo tay da thủ công</h4>
+                    <p class="text-amber-600 text-sm font-bold">250.000đ</p>
+                    <button onclick="addAccessory('Dây đeo tay da thủ công', 250000)" class="mt-2 bg-slate-900 text-white text-xs px-3 py-1.5 rounded">Thêm</button>
+                </div>
+                <div class="bg-white p-4 rounded-xl shadow-sm text-center border">
+                    <img src="https://images.unsplash.com/photo-1512790182412-b19e6d62bc39?auto=format&fit=crop&w=400&q=80" class="w-full h-32 object-cover rounded mb-2">
+                    <h4 class="font-bold text-sm">Túi đựng máy ảnh Retro</h4>
+                    <p class="text-amber-600 text-sm font-bold">350.000đ</p>
+                    <button onclick="addAccessory('Túi đựng máy ảnh Retro', 350000)" class="mt-2 bg-slate-900 text-white text-xs px-3 py-1.5 rounded">Thêm</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Giỏ hàng Modal & QR giữ nguyên -->
+    <div id="cart-modal" class="fixed inset-0 bg-black/50 z-50 hidden flex justify-end transition-opacity">
+        <div class="bg-white w-full max-w-md h-full shadow-2xl flex flex-col p-6 overflow-y-auto">
+            <div class="flex justify-between items-center border-b pb-4 mb-4">
+                <h3 class="text-xl font-bold flex items-center gap-2"><i class="fa-solid fa-bag-shopping text-amber-500"></i> Giỏ hàng</h3>
+                <button onclick="toggleCart()" class="text-gray-400 hover:text-gray-600 text-xl font-bold">&times;</button>
+            </div>
+            <div id="cart-items" class="flex-grow space-y-4 overflow-y-auto pr-1"><p class="text-
