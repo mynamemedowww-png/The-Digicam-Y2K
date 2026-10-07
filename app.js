@@ -52,6 +52,7 @@ function formatMoney(amount) {
 
 function renderProducts() {
     const grid = document.getElementById('product-grid');
+    if (!grid) return;
     grid.innerHTML = products.map(product => `
         <div class="bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100 flex flex-col justify-between hover:shadow-xl transition duration-300">
             <div>
@@ -91,30 +92,34 @@ function saveAndRenderCart() {
     localStorage.setItem('digicam_cart', JSON.stringify(cart));
     
     const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-    document.getElementById('cart-count').innerText = totalCount;
+    const badge = document.getElementById('cart-count');
+    if (badge) badge.innerText = totalCount;
 
     const cartContainer = document.getElementById('cart-items');
-    if (cart.length === 0) {
-        cartContainer.innerHTML = `<p class="text-gray-500 text-center py-8">Giỏ hàng đang trống trơn!</p>`;
-    } else {
-        cartContainer.innerHTML = cart.map(item => `
-            <div class="flex items-center justify-between gap-3 border-b pb-3">
-                <img src="${item.image}" class="w-16 h-16 object-cover rounded-lg border">
-                <div class="flex-grow">
-                    <h4 class="font-semibold text-sm text-slate-900">${item.name}</h4>
-                    <span class="text-amber-600 text-sm font-bold">${formatMoney(item.price)}</span>
+    if (cartContainer) {
+        if (cart.length === 0) {
+            cartContainer.innerHTML = `<p class="text-gray-500 text-center py-8">Giỏ hàng đang trống trơn!</p>`;
+        } else {
+            cartContainer.innerHTML = cart.map(item => `
+                <div class="flex items-center justify-between gap-3 border-b pb-3">
+                    <img src="${item.image}" class="w-16 h-16 object-cover rounded-lg border">
+                    <div class="flex-grow">
+                        <h4 class="font-semibold text-sm text-slate-900">${item.name}</h4>
+                        <span class="text-amber-600 text-sm font-bold">${formatMoney(item.price)}</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button onclick="updateQuantity(${item.id}, -1)" class="w-6 h-6 bg-gray-100 hover:bg-gray-200 rounded text-xs font-bold">-</button>
+                        <span class="text-sm font-semibold w-5 text-center">${item.quantity}</span>
+                        <button onclick="updateQuantity(${item.id}, 1)" class="w-6 h-6 bg-gray-100 hover:bg-gray-200 rounded text-xs font-bold">+</button>
+                    </div>
                 </div>
-                <div class="flex items-center gap-2">
-                    <button onclick="updateQuantity(${item.id}, -1)" class="w-6 h-6 bg-gray-100 hover:bg-gray-200 rounded text-xs font-bold">-</button>
-                    <span class="text-sm font-semibold w-5 text-center">${item.quantity}</span>
-                    <button onclick="updateQuantity(${item.id}, 1)" class="w-6 h-6 bg-gray-100 hover:bg-gray-200 rounded text-xs font-bold">+</button>
-                </div>
-            </div>
-        `).join('');
+            `).join('');
+        }
     }
 
     const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    document.getElementById('cart-total').innerText = formatMoney(totalPrice);
+    const totalElement = document.getElementById('cart-total');
+    if (totalElement) totalElement.innerText = formatMoney(totalPrice);
 }
 
 function updateQuantity(productId, delta) {
@@ -130,10 +135,9 @@ function updateQuantity(productId, delta) {
 
 function toggleCart() {
     const modal = document.getElementById('cart-modal');
-    modal.classList.toggle('hidden');
+    if (modal) modal.classList.toggle('hidden');
 }
 
-// Mở modal quét mã QR thanh toán sử dụng VietQR API tự động
 function openCheckoutModal() {
     if (cart.length === 0) {
         alert("Giỏ hàng của bạn đang trống!");
@@ -143,19 +147,15 @@ function openCheckoutModal() {
     const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
     document.getElementById('qr-total-amount').innerText = formatMoney(totalPrice);
 
-    // Tạo link VietQR tự động điền số tiền (Dùng tài khoản mẫu VietQR công khai hoặc thay thông tin của ông vào đây)
-    // Cú pháp VietQR chuẩn: https://img.vietqr.io/image/[BANK_ID]-[ACCOUNT_NO]-[TEMPLATE].png?amount=[MONEY]&addInfo=[NOTE]
-    // Ví dụ dùng Vietcombank / MB Bank:
-    const bankId = "MB"; // Mã ngân hàng (ví dụ: MB, VCB, TCB...)
-    const accountNo = "0123456789"; // Số tài khoản nhận tiền của ông
+    // Cấu hình thông tin tài khoản nhận tiền (Ví dụ: Ngân hàng MB, Số tài khoản mẫu)
+    const bankId = "MB"; 
+    const accountNo = "0123456789"; 
     const template = "compact";
     const note = "TheDigicamY2K Thanh Toan";
     
     const qrUrl = `https://img.vietqr.io/image/${bankId}-${accountNo}-${template}.png?amount=${totalPrice}&addInfo=${encodeURIComponent(note)}`;
-    
     document.getElementById('qr-code-img').src = qrUrl;
 
-    // Ẩn giỏ hàng, bật modal QR
     toggleCart();
     document.getElementById('checkout-modal').classList.remove('hidden');
 }
@@ -165,7 +165,7 @@ function closeCheckoutModal() {
 }
 
 function confirmOrder() {
-    alert("Cảm ơn bạn! Hệ thống đã ghi nhận đơn hàng và đang chờ xác nhận chuyển khoản từ bạn.");
+    alert("Cảm ơn bạn! Hệ thống đã ghi nhận đơn hàng và đang chờ xác nhận chuyển khoản.");
     cart = [];
     saveAndRenderCart();
     closeCheckoutModal();
