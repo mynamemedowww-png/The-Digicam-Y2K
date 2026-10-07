@@ -1,39 +1,24 @@
-# LumiCam – Website máy ảnh trên GitHub Pages
+# LumiCam V2 — GitHub Pages
 
-## Có gì trong web?
-- 6 máy ảnh giá khoảng 3–5 triệu đồng.
-- 5 phụ kiện mua kèm.
-- Xem chi tiết sản phẩm.
-- Giỏ hàng lưu bằng LocalStorage.
-- Trang đặt hàng.
-- Tạo QR thanh toán theo tổng tiền đơn hàng.
-- Responsive cho máy tính và điện thoại.
+Website demo bán máy ảnh cho bài tập thương mại điện tử.
+
+## Có gì trong bản V2?
+- Giao diện tối giản, giống cửa hàng máy ảnh hơn bản hoạt họa.
+- 6 máy ảnh + 5 phụ kiện.
+- Ảnh sản phẩm thực từ Wikimedia Commons được gọi trực tiếp bằng Special:FilePath.
+- Giỏ hàng dùng LocalStorage.
+- Form đặt hàng.
+- QR VietQR mô phỏng.
+- Chạy được trên GitHub Pages, không cần PHP/database.
 
 ## Cách đưa lên GitHub Pages
-1. Tạo một repository mới trên GitHub, ví dụ `lumicam`.
-2. Upload 3 file:
-   - `index.html`
-   - `style.css`
-   - `script.js`
-3. Vào **Settings → Pages**.
-4. Ở **Build and deployment**, chọn:
-   - Source: `Deploy from a branch`
-   - Branch: `main` / `/ (root)`
-5. Save và chờ GitHub cấp đường dẫn website.
+1. Tạo repository mới trên GitHub.
+2. Upload `index.html`, `style.css`, `script.js`, `README.md`.
+3. Vào Settings → Pages → Deploy from a branch → chọn `main` / root.
+4. Mở đường link GitHub Pages được cấp.
 
-## Cực kỳ quan trọng: đổi QR thanh toán
-Mở `script.js`, tìm phần:
+## Lưu ý thanh toán
+Số tài khoản trong demo là `0123456789`, tên `LUMICAM`. Đây chỉ là dữ liệu mô phỏng; đổi trong `script.js` nếu cần.
 
-const STORE = {
-  bankId: "MB",
-  accountNumber: "0123456789",
-  accountName: "LUMICAM",
-};
-
-Đổi thành thông tin tài khoản của bạn.
-
-Nếu chỉ dùng để thuyết trình/bài tập, có thể giữ thông tin mô phỏng.
-
-## Lưu ý
-QR được tạo thông qua VietQR image service nên cần Internet khi mở trang thanh toán.
-GitHub Pages không có máy chủ để tự kiểm tra ngân hàng đã nhận tiền hay chưa. Nút “Tôi đã thanh toán” chỉ là mô phỏng cho bài tập.
+## Nguồn ảnh
+Ảnh máy ảnh/phụ kiện dùng từ Wikimedia Commons. Một số ảnh có giấy phép CC BY/CC BY-SA; nếu dùng trong bài nộp công khai, nên giữ phần ghi nguồn/giấy phép phù hợp.
