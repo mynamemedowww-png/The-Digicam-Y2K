@@ -1,131 +1,130 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Digicam Y2K - Máy ảnh KTS & Retro chính hãng</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="LumiCam - Máy ảnh nhỏ gọn cho những khoảnh khắc đáng nhớ.">
+  <title>LumiCam | Máy ảnh & Phụ kiện</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans">
+<body>
+  <header class="header">
+    <div class="container nav">
+      <a class="logo" href="#home"><span>LU</span> LUMICAM</a>
+      <nav>
+        <a href="#home">Trang chủ</a>
+        <a href="#cameras">Máy ảnh</a>
+        <a href="#accessories">Phụ kiện</a>
+        <a href="#about">Giới thiệu</a>
+      </nav>
+      <button class="cart-button" onclick="openCart()" aria-label="Mở giỏ hàng">
+        🛒 <span>Giỏ hàng</span><b id="cartCount">0</b>
+      </button>
+    </div>
+  </header>
 
-    <!-- Header / Navbar -->
-    <header class="bg-slate-900 text-white sticky top-0 z-50 shadow-md">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold tracking-wider flex items-center gap-2">
-                <i class="fa-solid fa-camera-retro text-amber-400"></i> The Digicam Y2K
-            </a>
-            <div class="flex items-center gap-6">
-                <nav class="hidden md:flex gap-6 text-sm font-medium items-center">
-                    <a href="index.html" class="text-amber-400 font-semibold transition">Trang chủ</a>
-                    <a href="#products" class="hover:text-amber-400 transition">Sản phẩm</a>
-                    <a href="blog.html" class="hover:text-amber-400 transition">Blog Nhiếp Ảnh</a>
-                    <a href="#contact" class="hover:text-amber-400 transition">Liên hệ</a>
-                </nav>
-                <!-- Nút mở giỏ hàng -->
-                <button onclick="toggleCart()" class="relative bg-amber-500 hover:bg-amber-600 text-slate-900 font-semibold px-4 py-2 rounded-lg flex items-center gap-2 transition shadow">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                    <span>Giỏ hàng</span>
-                    <span id="cart-count" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center font-bold shadow">0</span>
-                </button>
-            </div>
+  <main id="home">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">CAMERA FOR EVERYDAY MOMENTS</p>
+          <h1>Giữ lại những khoảnh khắc <em>đáng nhớ.</em></h1>
+          <p class="hero-text">Máy ảnh nhỏ gọn, dễ dùng và phù hợp cho những chuyến đi, buổi hẹn và cuộc sống hằng ngày.</p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#cameras">Khám phá máy ảnh</a>
+            <a class="btn ghost" href="#accessories">Xem phụ kiện</a>
+          </div>
+          <div class="hero-note"><span>✓</span> Kiểm tra máy trước khi giao &nbsp; <span>✓</span> Hỗ trợ đổi trả</div>
         </div>
-    </header>
-
-    <!-- Hero Banner -->
-    <section class="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white py-16 text-center px-4">
-        <div class="container mx-auto max-w-3xl">
-            <h1 class="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">Hoài niệm ánh sáng, <span class="text-amber-400">Bắt trọn chất Y2K</span></h1>
-            <p class="text-gray-300 mb-8 text-base md:text-lg">Chuyên cung cấp máy ảnh kỹ thuật số vintage, máy compact đời cũ và phụ kiện chính hãng.</p>
-            <a href="#products" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-8 py-3 rounded-full shadow-lg transition transform hover:-translate-y-0.5 inline-block">Khám phá ngay</a>
+        <div class="hero-camera">
+          <div class="camera-art">
+            <div class="lens"></div>
+            <div class="camera-flash"></div>
+            <div class="camera-screen"></div>
+            <div class="camera-brand">LUMICAM</div>
+          </div>
+          <div class="floating-card"><strong>6</strong><span>mẫu máy ảnh</span></div>
         </div>
+      </div>
     </section>
 
-    <!-- Danh sách sản phẩm -->
-    <main id="products" class="container mx-auto px-4 py-12">
-        <h2 class="text-3xl font-bold text-center mb-2">Bộ sưu tập máy ảnh</h2>
-        <p class="text-gray-500 text-center mb-10">Lựa chọn những thiết bị mang hơi thở hoài cổ độc đáo</p>
-        
-        <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Sản phẩm được render tự động từ app.js -->
+    <section class="section" id="cameras">
+      <div class="container">
+        <div class="section-head">
+          <div><p class="eyebrow">SẢN PHẨM NỔI BẬT</p><h2>Máy ảnh</h2></div>
+          <p>6 lựa chọn trong tầm giá 3–5 triệu đồng.</p>
         </div>
-    </main>
+        <div class="product-grid" id="cameraGrid"></div>
+      </div>
+    </section>
 
-    <!-- Giỏ hàng Sidebar -->
-    <div id="cart-modal" class="fixed inset-0 bg-black/50 z-50 hidden flex justify-end transition-opacity">
-        <div class="bg-white w-full max-w-md h-full shadow-2xl flex flex-col p-6 overflow-y-auto">
-            <div class="flex justify-between items-center border-b pb-4 mb-4">
-                <h3 class="text-xl font-bold flex items-center gap-2">
-                    <i class="fa-solid fa-bag-shopping text-amber-500"></i> Giỏ hàng của bạn
-                </h3>
-                <button onclick="toggleCart()" class="text-gray-400 hover:text-gray-600 text-xl font-bold">&times;</button>
-            </div>
+    <section class="banner">
+      <div class="container banner-inner">
+        <div><p class="eyebrow">MUA MÁY • MUA KÈM • TIẾT KIỆM</p><h2>Đừng quên những món nhỏ làm chuyến đi trọn vẹn hơn.</h2></div>
+        <a class="btn light" href="#accessories">Xem phụ kiện →</a>
+      </div>
+    </section>
 
-            <!-- Danh sách hàng trong giỏ -->
-            <div id="cart-items" class="flex-grow space-y-4 overflow-y-auto pr-1">
-                <p class="text-gray-500 text-center py-8">Giỏ hàng đang trống trơn!</p>
-            </div>
-
-            <!-- Tổng tiền & Thanh toán -->
-            <div class="border-t pt-4 mt-4">
-                <div class="flex justify-between items-center mb-4 text-lg font-bold">
-                    <span>Tổng cộng:</span>
-                    <span id="cart-total" class="text-amber-600">0đ</span>
-                </div>
-                <button onclick="openCheckoutModal()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-xl transition shadow">
-                    Tiến hành thanh toán QR
-                </button>
-            </div>
+    <section class="section" id="accessories">
+      <div class="container">
+        <div class="section-head">
+          <div><p class="eyebrow">MUA KÈM</p><h2>Phụ kiện</h2></div>
+          <p>Thẻ nhớ, pin, túi và những món cần thiết cho máy ảnh.</p>
         </div>
+        <div class="product-grid accessory-grid" id="accessoryGrid"></div>
+      </div>
+    </section>
+
+    <section class="section about" id="about">
+      <div class="container about-grid">
+        <div><p class="eyebrow">VỀ LUMICAM</p><h2>Chụp dễ hơn.<br>Vui hơn.</h2></div>
+        <div>
+          <p>LumiCam là concept cửa hàng máy ảnh dành cho người mới bắt đầu và những bạn yêu thích việc lưu giữ khoảnh khắc theo cách riêng.</p>
+          <div class="about-points">
+            <div><strong>01</strong><span>Sản phẩm dễ tiếp cận</span></div>
+            <div><strong>02</strong><span>Tư vấn trước khi mua</span></div>
+            <div><strong>03</strong><span>Phụ kiện chọn lọc</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div><a class="logo" href="#home"><span>LU</span> LUMICAM</a><p>Camera for everyday moments.</p></div>
+      <div><strong>Liên hệ</strong><p>Hotline: 0900 123 456<br>Email: hello@lumicam.vn</p></div>
+      <div><strong>Chính sách</strong><p>Đổi trả trong 7 ngày<br>Kiểm tra hàng trước khi nhận</p></div>
     </div>
+    <div class="container copyright">© 2026 LumiCam. Website mô phỏng phục vụ dự án.</div>
+  </footer>
 
-    <!-- Modal Thanh toán QR Ngân hàng -->
-    <div id="checkout-modal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl relative">
-            <button onclick="closeCheckoutModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-xl font-bold">&times;</button>
-            <h3 class="text-xl font-bold text-slate-900 mb-2 text-center">Quét mã QR để thanh toán</h3>
-            <p class="text-gray-500 text-xs text-center mb-4">Sử dụng ứng dụng Ngân hàng hoặc MoMo để quét mã bên dưới</p>
-            
-            <!-- Khung chứa ảnh QR VietQR động -->
-            <div class="flex justify-center mb-4">
-                <div class="border-4 border-amber-400 rounded-xl p-2 bg-white shadow-inner">
-                    <img id="qr-code-img" src="" alt="QR Thanh Toán" class="w-56 h-56 object-contain">
-                </div>
-            </div>
-
-            <div class="bg-gray-50 p-3 rounded-xl text-sm mb-4 space-y-1">
-                <div class="flex justify-between">
-                    <span class="text-gray-500">Ngân hàng:</span>
-                    <span class="font-semibold">MB Bank (Quân Đội)</span>
-                </div>
-                <div class="flex justify-between">
-                    <span class="text-gray-500">Chủ tài khoản:</span>
-                    <span class="font-semibold text-amber-600">THE DIGICAM Y2K</span>
-                </div>
-                <div class="flex justify-between">
-                    <span class="text-gray-500">Số tiền:</span>
-                    <span id="qr-total-amount" class="font-bold text-red-600">0đ</span>
-                </div>
-            </div>
-
-            <button onclick="confirmOrder()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold py-3 rounded-xl transition shadow">
-                Tôi đã chuyển khoản xong
-            </button>
-        </div>
+  <div class="overlay" id="overlay" onclick="closeCart()"></div>
+  <aside class="cart-drawer" id="cartDrawer">
+    <div class="drawer-head"><h3>Giỏ hàng</h3><button onclick="closeCart()">×</button></div>
+    <div id="cartItems" class="cart-items"></div>
+    <div class="cart-bottom">
+      <div class="total-line"><span>Tạm tính</span><strong id="cartTotal">0₫</strong></div>
+      <button class="btn primary full" onclick="openCheckout()">Tiến hành đặt hàng</button>
+      <button class="text-button" onclick="clearCart()">Xóa giỏ hàng</button>
     </div>
+  </aside>
 
-    <!-- Footer -->
-    <footer id="contact" class="bg-slate-900 text-gray-400 py-10 text-center mt-16">
-        <div class="container mx-auto px-4">
-            <p class="text-white font-bold text-lg mb-2">THE DIGICAM Y2K</p>
-            <p class="text-sm mb-4">Nơi lưu giữ ký ức số qua từng khung hình • Sài Gòn</p>
-            <p class="text-xs text-gray-500">&copy; 2026 The Digicam Y2K. Designed by Thảo Nguyên.</p>
-        </div>
-    </footer>
+  <div class="modal" id="productModal">
+    <div class="modal-box product-detail" id="productDetail"></div>
+  </div>
 
-    <!-- Script xử lý -->
-    <script src="app.js"></script>
+  <div class="modal" id="checkoutModal">
+    <div class="modal-box checkout-box">
+      <button class="modal-close" onclick="closeCheckout()">×</button>
+      <div id="checkoutContent"></div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
